@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Mascotas en TeleVet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+<h1 class="mt-5 mb-5">Gtics F</h1>
+<div class="container-fluid d-flex justify-content-center">
+    <div th:insert="~{menuSuperior.html :: menu}"></div>
+</div>
+<div class="container mt-5">
+    <h1 class="mb-3">Lista de Mascotas en TeleVet</h1>
+    <a th:href="@{/createTech}" class="btn btn-primary mb-3">Nuevo tecnico</a>
+    <table class="table table-sm">
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>DNI</th>
+            <th>Numero de celular</th>
+            <th>Edad</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr th:each="tecnico, info: ${listaTecnicos}">
+            <td th:text="${info.index + 1}"></td>
+            <td th:text="${tecnico.getFirstName()}"></td>
+            <td th:text="${tecnico.getLastName()}"></td>
+            <td th:text="${tecnico.getDni()}"></td>
+            <td th:text="${tecnico.getPhoneNumber()}"></td>
+            <td th:text="${tecnico.getAge()}"></td>
+            <td><a class="btn btn-primary" th:href="@{'/EditTech'+'?id='+${tecnico.getTechnicianId()}}">Editar</a></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
